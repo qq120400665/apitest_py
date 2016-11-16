@@ -17,7 +17,7 @@ class CallApi():
     def apicall(self,method,url,getparams,postparams,putparams,headers):
         result = ''
         headers = {'content-type': 'application/x-www-form-urlencoded'}
-        if method == 'GET':
+        if method == 'GET':11
             if getparams != '':
                 result = requests.get(url,params=getparams,headers=headers)
             else:
