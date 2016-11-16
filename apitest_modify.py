@@ -580,13 +580,16 @@ class CallApi():
         print 'params_withsign:',json.dumps(params_withsign,encoding='UTF-8',ensure_ascii=False)
         return params_withsign
 
-    def request_eachapi(self,file1,names):
+    def handle_caseid(self,file1,names):
+        #按输入运行指定的case：2或者2,3或者ALL
         params = self.handle_params_withsign(file1,names)
-        n = len(params)
+        n = len(params)/len(names)
+        case_id = []
+        cases = []
         while True:
             print u'共有'+ str(n) + u'条用例'
             st = raw_input(u'请输入想运行的用例编号，比如2或者2,3或者ALL：')
-            print type(st)
+            #print type(st)
             if len(st) != 0:
                 break
         if st == 'all' or st == 'ALL':
@@ -596,11 +599,27 @@ class CallApi():
             for i in st:
                 for j in params:
                     if str(i) == j.keys()[0].split('_')[-1]:
-                        print j
-                        pass #执行请求接口233333444445555
+                        #print i
+                        case_id.append(i)
+                        #print j
+                        cases.append(j)
+                        #pass #执行请求接口
+        print case_id,cases
+        return case_id , cases
 
-    def handle_urlmethod(self,file1):
+    def handle_urlmethod(self,file1,names=None):
         #处理每条case的method和URL
+        caselists = self.excel_table_byindex(file1)
+        (case_id,cases) = self.handle_caseid(file1,names)
+        methods = []
+        urls = []
+        for i in case_id:
+            methods.append(caselists[int(i)]['method'])
+            urls.append(caselists[int(i)]['url'])
+        print methods,urls
+        pass
+
+    def request_eachcase(self,file,name=None):
         pass
 
     # def response_compare(self,file1,names=None):
@@ -656,7 +675,7 @@ if __name__ =='__main__':
     #if 'the_third' in api_case:
         #a.request_the_third(api_case,names)
         #input("Press <enter>")
-    a.request_eachapi(api_case,names)
+    a.handle_urlmethod(api_case,names)
         #a.response_compare(api_case,names)
         # a.handle_sign(api_case,names)
         #input("Prease <enter>")
