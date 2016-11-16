@@ -595,7 +595,8 @@ class CallApi():
             st = st.split(',')
             for i in st:
                 for j in params:
-                    if str(i) == j.keys().split('_')[-1]:
+                    if str(i) == j.keys()[0].split('_')[-1]:
+                        print j
                         pass #执行请求接口
 
     def handle_urlmethod(self,file1):
