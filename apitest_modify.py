@@ -597,7 +597,7 @@ class CallApi():
                 for j in params:
                     if str(i) == j.keys()[0].split('_')[-1]:
                         print j
-                        pass #执行请求接口233333
+                        pass #执行请求接口233333444445555
 
     def handle_urlmethod(self,file1):
         #处理每条case的method和URL
