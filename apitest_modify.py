@@ -648,6 +648,8 @@ class CallApi():
             print i.keys(),':',json.dumps(i.values(),encoding='UTF-8',ensure_ascii=False)
         return results
 
+    def compare_status(self):
+        pass
 
     # def response_compare(self,file1,names=None):
     #     '''比.较status'''
