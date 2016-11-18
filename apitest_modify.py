@@ -650,7 +650,7 @@ class CallApi():
 
 
     # def response_compare(self,file1,names=None):
-    #     '''比较status'''
+    #     '''比.较status'''
     #     try:
     #         responses = eval(self.request_the_third_response(file1,names))
     #     except Exception,e:
