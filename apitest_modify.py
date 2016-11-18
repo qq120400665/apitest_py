@@ -9,29 +9,30 @@ import os
 import time
 import MySQLdb
 import hashlib
+import copy
 
 
 class CallApi():
     
     u'''调用接口方法'''
-    def apicall(self,method,url,getparams,postparams,putparams,headers):
+    def apicall(self,method,url,params,headers):
         result = ''
         headers = {'content-type': 'application/x-www-form-urlencoded'}
         if method == 'GET':
-            if getparams != '':
-                result = requests.get(url,params=getparams,headers=headers)
+            if params != '':
+                result = requests.get(url,params,headers=headers)
             else:
                 result = requests.get(url,headers=headers)
 
         if method == 'POST':
-            if postparams != '':
-                result = requests.post(url,data=postparams,headers=headers)
+            if params != '':
+                result = requests.post(url,params,headers=headers)
             else:
                 result = requests.post(url,headers=headers)
 
         if method == 'PUT':
-            if putparams != '':
-                result = requests.put(url,params=putparams,headers=headers)
+            if params != '':
+                result = requests.put(url,params,headers=headers)
             else:
                 result = requests.put(url,headers=headers)
               
@@ -39,7 +40,7 @@ class CallApi():
             #jsdata = json.loads(result.text)
             #return jsdata
             #print jsdata
-            print result.encoding
+            #print result.encoding
             result.encoding = 'utf-8'
             jsdata = result.json()
             jsdata = json.dumps(jsdata).decode('unicode-escape')
@@ -539,9 +540,9 @@ class CallApi():
         n=1
         for eachparam_connect in eachparams_connect:
             for name in names:
-                print '=============handle %s' %(name) ,'the %sst case' %n ,'======='
-                appid = 'appid='+str(names[name][0])
-                appkey = 'appkey='+str(names[name][1])
+                print '=============handle %s' %(name.keys()) ,'the %sst case' %n ,'======='
+                appid = 'appid='+str(name.values()[0][0])
+                appkey = 'appkey='+str(name.values()[0][1])
                 eachparam_connect.append(nonce)
                 eachparam_connect.append(appid)
                 eachparam_connect.sort()
@@ -549,6 +550,10 @@ class CallApi():
         #print 'eachparam_connect:',eachparam_connect
                 sign_ex = '&'.join(eachparam_connect)
                 eachsign = hashlib.sha1(sign_ex).hexdigest()
+                print 'eachparam_connect:',eachparam_connect
+                eachparam_connect.remove(nonce)
+                eachparam_connect.remove(appid)
+                eachparam_connect.remove(appkey)
                 print eachsign
                 sign.append(eachsign)
             n+=1
@@ -562,19 +567,25 @@ class CallApi():
         params_withsign = []
 
         n=1
+        m = 1
         for i in range(0,len(caselists_params)):
             for name in names:
                 params = {}
-                caselists_params[i]['appid'] = names[name][0]
-                caselists_params[i]['nocne'] = nonce
+                caselists_params[i]['appid'] = name.values()[0][0]#赋值语句不会创建对象的副本，仅仅创建引用这是Python的一个核心理念，有时候当行为不对时会带来错误。在下面的例子中，一个列表对象被赋给了名为L的变量，然后L又在列表M中被引用。内部改变L的话，同时也会改变M所引用的对象，因为它们俩都指向同一个对象。
+                caselists_params[i]['nonce'] = nonce
                 #locals()['caselists_params_'+name+'_'+str(n)] = caselists_params[i] #动态变量名
-                #print 'caselists_params_'+name+'_'+str(n) , locals()['caselists_params_'+name+'_'+str(n)]
-                params['caselists_params_'+name+'_'+str(n)] = caselists_params[i]
-                params_withsign.append(params)
+                #print 'caselists_params_'+name+'_'+str(    n) , locals()['caselists_params_'+name+'_'+str(n)]
+                params['caselists_params_'+str(name.keys())+'_'+str(n)] = caselists_params[i]
+                params_ = copy.deepcopy(params)#创建副本，避免被引用
+                params_withsign.append(params_)
+                print 'params_withsign',params_withsign
             n+=1
+        print 'params_withsign_ex:',params_withsign
+        print len(params_withsign)
         for i in range(0,len(params_withsign)):
-            for j in sign:
-                params_withsign[i].values()[0]['sign'] = j
+            for j in range(0,len(sign)):
+                if i ==j:
+                    params_withsign[i].values()[0]['sign'] = sign[j]
 
 
         print 'params_withsign:',json.dumps(params_withsign,encoding='UTF-8',ensure_ascii=False)
@@ -603,24 +614,40 @@ class CallApi():
                         case_id.append(i)
                         #print j
                         cases.append(j)
-                        #pass #执行请求接口
-        print case_id,cases
-        return case_id , cases
-
-    def handle_urlmethod(self,file1,names=None):
-        #处理每条case的method和URL
+                        #pass #执行请求接口.
         caselists = self.excel_table_byindex(file1)
-        (case_id,cases) = self.handle_caseid(file1,names)
         methods = []
         urls = []
         for i in case_id:
-            methods.append(caselists[int(i)]['method'])
-            urls.append(caselists[int(i)]['url'])
-        print methods,urls
-        pass
+            methods.append(caselists[int(i)-1]['method'])
+            urls.append(caselists[int(i)-1]['url'])
+        print 'methods:',methods
+        print 'urls:',urls
+        print 'case_id:',case_id
+        print 'cases:',cases
+        return methods,urls,case_id,cases
 
-    def request_eachcase(self,file,name=None):
-        pass
+    def request_eachcase(self,file1,names):
+        #请求接口
+        (methods,urls,case_id,cases) = self.handle_caseid(file1,names)
+        results = []
+        headers = {'content-type': 'application/x-www-form-urlencoded'}
+        print case_id
+        for i in range(len(case_id)):
+            result = {}
+            #print methods[i]
+            #print urls[i]
+            #print cases[i].values()[0]
+            response = self.apicall(methods[i],urls[i],cases[i].values()[0],headers)
+            #print cases[i].keys()[0]
+            result[cases[i].keys()[0]] = response
+            #print 'result:',json.dumps(result,encoding='UTF-8',ensure_ascii=False)
+            results.append(result)
+        #print 'results:',json.dumps(results,encoding='UTF-8',ensure_ascii=False)
+        for i in results:
+            print i.keys(),':',json.dumps(i.values(),encoding='UTF-8',ensure_ascii=False)
+        return results
+
 
     # def response_compare(self,file1,names=None):
     #     '''比较status'''
@@ -658,16 +685,16 @@ class CallApi():
                
 
 if __name__ =='__main__':
-    '''names={'app_qusong':['e2beb30fe93cd5ca9ed0ba705a4e6096','4252855545bfabcf39a7d7d2ea7e268b9925d81e'],
-    'app_wokuaidao':['9c838579adda7f729382e226459340e3','7fd154b4fa0afa268f607dde2c381703aa108c21'],
-    'app_weidian':['77f18b5fbe3979e9f53ffe09b6004ee5','5f373003a793fd123e13de399ab502fc35b3e34a'],
-    'app_sweets':['9fde23f821e48ddb20164374957ef772','36412135402bc7d6821781dcc10e5b25abc1ab00'],
-    'app_zhuli':['ad5180fff668ac1bc93c368cb6f0a2cb','d563a3e51f3b34d2f02c5159df010db43eaefaa7']}'''
+    # names=[{'app_qusong':['e2beb30fe93cd5ca9ed0ba705a4e6096','4252855545bfabcf39a7d7d2ea7e268b9925d81e']},
+    # {'app_wokuaidao':['9c838579adda7f729382e226459340e3','7fd154b4fa0afa268f607dde2c381703aa108c21']},
+    # {'app_weidian':['77f18b5fbe3979e9f53ffe09b6004ee5','5f373003a793fd123e13de399ab502fc35b3e34a']},
+    # {'app_sweets':['9fde23f821e48ddb20164374957ef772','36412135402bc7d6821781dcc10e5b25abc1ab00']},
+    # {'app_zhuli':['ad5180fff668ac1bc93c368cb6f0a2cb','d563a3e51f3b34d2f02c5159df010db43eaefaa7']}]
     api_case = 'c:\\Users\\lyancoffee\\Desktop\\apitest\\api_case_the_third.xlsx'
     #names={'app_weidian':['77f18b5fbe3979e9f53ffe09b6004ee5','5f373003a793fd123e13de399ab502fc35b3e34a']}
     #names={'app_zhuli':['ad5180fff668ac1bc93c368cb6f0a2cb','d563a3e51f3b34d2f02c5159df010db43eaefaa7']}
     #names={'app_chubao':['77f18b5fbe3979e9f53ffe09b6004ee5','5f373003a793fd123e13de399ab502fc35b3e34a']}
-    names = {'app_ali':['dbc1e0a09f15cac4cabf38ed5c0d5974','7e5c0e6a82e026588f4abf02260fa7c3'],'app_zhuli':['ad5180fff668ac1bc93c368cb6f0a2cb','d563a3e51f3b34d2f02c5159df010db43eaefaa7']}
+    names = [{'app_ali':['dbc1e0a09f15cac4cabf38ed5c0d5974','7e5c0e6a82e026588f4abf02260fa7c3']},{'app_zhuli':['ad5180fff668ac1bc93c368cb6f0a2cb','d563a3e51f3b34d2f02c5159df010db43eaefaa7']}]
     a = CallApi()
     #if 'courier_barista' in api_case:
         #a.request_courier_barista(api_case)
@@ -675,7 +702,8 @@ if __name__ =='__main__':
     #if 'the_third' in api_case:
         #a.request_the_third(api_case,names)
         #input("Press <enter>")
-    a.handle_urlmethod(api_case,names)
+    #a.handle_urlmethod(api_case,names)
+    a.request_eachcase(api_case,names)
         #a.response_compare(api_case,names)
         # a.handle_sign(api_case,names)
         #input("Prease <enter>")
