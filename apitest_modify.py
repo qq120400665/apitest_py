@@ -592,7 +592,7 @@ class CallApi():
         return params_withsign
 
     def handle_caseid(self,file1,names):
-        #按输入运行指定的case：2或者2,3或者ALL
+        #按输入处理指定的case：2或者2,3或者ALL
         params = self.handle_params_withsign(file1,names)
         n = len(params)/len(names)
         case_id = []
@@ -605,6 +605,9 @@ class CallApi():
                 break
         if st == 'all' or st == 'ALL':
             pass#逐个请求接口
+            for  i in params:
+                case_id.append(i.keys()[0].split('_')[-1])
+                cases.append(i)
         else:
             st = st.split(',')
             for i in st:
@@ -624,7 +627,7 @@ class CallApi():
         print 'methods:',methods
         print 'urls:',urls
         print 'case_id:',case_id
-        print 'cases:',cases
+        print 'cases:',json.dumps(cases,encoding='UTF-8',ensure_ascii=False)
         return methods,urls,case_id,cases
 
     def request_eachcase(self,file1,names):
