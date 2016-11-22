@@ -504,7 +504,7 @@ class HandleCasesFromExcel():
         print 'caselists_params:',json.dumps(caselists_params,encoding='UTF-8',ensure_ascii=False)
         return caselists_params
 
-    def handle_eachcase1(self,file1):
+    def handle_eachcase1(self):
         #将元素{}转为[]
         caselists = self.handle_eachcase(file1)
         for i in range(0,len(caselists)):

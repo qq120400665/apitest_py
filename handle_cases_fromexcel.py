@@ -14,7 +14,7 @@ import copy
 
 class HandleCasesFromExcel():
 
-    def open_excel(slef,file1):
+    def open_excel(self,file1):
         u'''打开excel'''
         #file = 'C:\\Users\\lyancoffee\\Desktop\\apitest\\api_case.xlsx'
         try:
@@ -163,9 +163,9 @@ class HandleCasesFromExcel():
             result = self.request_the_third(file)
             return result
 
-    def handle_eachcase(self,file1):
+    def handle_eachcase(self):
         #对excel每天case处理，只保留参数部分
-        caselists = self.excel_table_byindex(file1)
+        caselists = self.excel_table_byindex(apicase)
         print 'caselists:',json.dumps(caselists,encoding='UTF-8',ensure_ascii=False)
         for caselist in caselists:
             for i in caselist.keys():
@@ -185,9 +185,9 @@ class HandleCasesFromExcel():
         print 'caselists_params:',json.dumps(caselists_params,encoding='UTF-8',ensure_ascii=False)
         return caselists_params
 
-    def handle_eachcase1(self,file1):
+    def handle_eachcase1(self):
         #将元素{}转为[]
-        caselists = self.handle_eachcase(file1)
+        caselists = self.handle_eachcase(apitest)
         for i in range(0,len(caselists)):
             if caselists[i]=={}:
                 caselists[i] = []
@@ -195,9 +195,9 @@ class HandleCasesFromExcel():
         print 'caselists_params1:',json.dumps(caselists_params1,encoding='UTF-8',ensure_ascii=False)
         return caselists_params1
 
-    def handle_eachparam(self,file1):
+    def handle_eachparam(self):
         #用=连接各个参数
-        caselists_params = self.handle_eachcase(file1)
+        caselists_params = self.handle_eachcase()
         eachparam_connect = []
         eachparams_connect = []
         params = []
@@ -213,10 +213,10 @@ class HandleCasesFromExcel():
         print 'eachparams_connect:',json.dumps(eachparams_connect,encoding='UTF-8',ensure_ascii=False)
         return eachparams_connect
 
-    def handle_sign(self,file1,name=None):
+    def handle_sign(self):
         #用appid、appkey和参数生成sign
         nonce = 'nonce='+str(time.time()).split('.')[0]+'000'
-        eachparams_connect = self.handle_eachparam(file1)
+        eachparams_connect = self.handle_eachparam()
         sign = []
         n=1
         for eachparam_connect in eachparams_connect:
@@ -241,10 +241,10 @@ class HandleCasesFromExcel():
         print 'sign:',sign
         return sign
 
-    def handle_params_withsign(self,file1,names=None):
+    def handle_params_withsign(self):
         nonce = str(time.time()).split('.')[0]+'000'
-        caselists_params = self.handle_eachcase(file1)
-        sign = self.handle_sign(file1,names)
+        caselists_params = self.handle_eachcase()
+        sign = self.handle_sign()
         params_withsign = []
 
         n=1
@@ -272,9 +272,9 @@ class HandleCasesFromExcel():
         print 'params_withsign:',json.dumps(params_withsign,encoding='UTF-8',ensure_ascii=False)
         return params_withsign
 
-    def handle_caseid(self,file1,names):
+    def handle_caseid(self):
         #按输入处理指定的case：2或者2,3或者ALL
-        params = self.handle_params_withsign(file1,names)
+        params = self.handle_params_withsign()
         n = len(params)/len(names)
         case_id = []
         cases = []
@@ -299,7 +299,7 @@ class HandleCasesFromExcel():
                         #print j
                         cases.append(j)
                         #pass #执行请求接口.
-        caselists = self.excel_table_byindex(file1)
+        caselists = self.excel_table_byindex(apicase)
         methods = []
         urls = []
         for i in case_id:
@@ -323,16 +323,18 @@ class HandleCasesFromExcel():
 #     # {'app_weidian':['77f18b5fbe3979e9f53ffe09b6004ee5','5f373003a793fd123e13de399ab502fc35b3e34a']},
 #     # {'app_sweets':['9fde23f821e48ddb20164374957ef772','36412135402bc7d6821781dcc10e5b25abc1ab00']},
 #     # {'app_zhuli':['ad5180fff668ac1bc93c368cb6f0a2cb','d563a3e51f3b34d2f02c5159df010db43eaefaa7']}]
-api_case = 'c:\\Users\\lyancoffee\\Desktop\\apitest\\api_case_the_third.xlsx'
-#     #names={'app_weidian':['77f18b5fbe3979e9f53ffe09b6004ee5','5f373003a793fd123e13de399ab502fc35b3e34a']}
-#     #names={'app_zhuli':['ad5180fff668ac1bc93c368cb6f0a2cb','d563a3e51f3b34d2f02c5159df010db43eaefaa7']}
-#     #names={'app_chubao':['77f18b5fbe3979e9f53ffe09b6004ee5','5f373003a793fd123e13de399ab502fc35b3e34a']}
-names = [{'app_ali':['dbc1e0a09f15cac4cabf38ed5c0d5974','7e5c0e6a82e026588f4abf02260fa7c3']},{'app_zhuli':['ad5180fff668ac1bc93c368cb6f0a2cb','d563a3e51f3b34d2f02c5159df010db43eaefaa7']}]
-#     a = HandleCasesFromExcel()
+
+apicase = 'c:\\Users\\lyancoffee\\Desktop\\apitest\\api_case_the_third.xlsx'
 #
-#     a.request_eachcase(api_case,names)
-#         #a.response_compare(api_case,names)
-#         # a.handle_sign(api_case,names)
+# #     #names={'app_weidian':['77f18b5fbe3979e9f53ffe09b6004ee5','5f373003a793fd123e13de399ab502fc35b3e34a']}
+# #     #names={'app_zhuli':['ad5180fff668ac1bc93c368cb6f0a2cb','d563a3e51f3b34d2f02c5159df010db43eaefaa7']}
+# #     #names={'app_chubao':['77f18b5fbe3979e9f53ffe09b6004ee5','5f373003a793fd123e13de399ab502fc35b3e34a']}
+#
+names = [{'app_ali':['dbc1e0a09f15cac4cabf38ed5c0d5974','7e5c0e6a82e026588f4abf02260fa7c3']},{'app_zhuli':['ad5180fff668ac1bc93c368cb6f0a2cb','d563a3e51f3b34d2f02c5159df010db43eaefaa7']}]
+
+# if __name__ == '__main__':
+#     a = HandleCasesFromExcel()
+#     a.handle_caseid()
 #         #input("Prease <enter>")
 
 #     '''hash_new = hashlib.sha1() #或hashlib.md5()

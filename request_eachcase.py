@@ -44,10 +44,10 @@ class ApiCall():
         #print jsdata
         #return jsdata
 
-    def request_eachcase(self,file1,names):
+    def request_eachcase(self):
         #请求接口
         aa = HandleCasesFromExcel()
-        (methods,urls,case_id,cases) = aa.handle_caseid(file1,names)
+        (methods,urls,case_id,cases) = aa.handle_caseid()
         results = []
         headers = {'content-type': 'application/x-www-form-urlencoded'}
         print case_id
@@ -61,14 +61,11 @@ class ApiCall():
             result[cases[i].keys()[0]] = response
             #print 'result:',json.dumps(result,encoding='UTF-8',ensure_ascii=False)
             results.append(result)
-        #print 'results:',json.dumps(results,encoding='UTF-8',ensure_ascii=False)
-        for i in results:
-            print i.keys(),':',json.dumps(i.values(),encoding='UTF-8',ensure_ascii=False)
+        print 'results:',json.dumps(results,encoding='UTF-8',ensure_ascii=False)
+        # for i in results:
+        #     print i.keys(),':',json.dumps(i.values(),encoding='UTF-8',ensure_ascii=False)
         return results
-
-api_case = 'c:\\Users\\lyancoffee\\Desktop\\apitest\\api_case_the_third.xlsx'
-names = [{'app_ali':['dbc1e0a09f15cac4cabf38ed5c0d5974','7e5c0e6a82e026588f4abf02260fa7c3']},{'app_zhuli':['ad5180fff668ac1bc93c368cb6f0a2cb','d563a3e51f3b34d2f02c5159df010db43eaefaa7']}]
 
 if __name__ == '__main__':
 	a = ApiCall()
-	a.request_eachcase(api_case,names)
+	a.request_eachcase()
