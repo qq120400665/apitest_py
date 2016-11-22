@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 import sys
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
@@ -12,7 +12,7 @@ import hashlib
 import copy
 
 
-class CallApi():
+class HandleCasesFromExcel():
     
     u'''调用接口方法'''
     def apicall(self,method,url,params,headers):
@@ -35,7 +35,7 @@ class CallApi():
                 result = requests.put(url,params,headers=headers)
             else:
                 result = requests.put(url,headers=headers)
-              
+
         try:
             #jsdata = json.loads(result.text)
             #return jsdata
@@ -700,7 +700,7 @@ if __name__ =='__main__':
     #names={'app_zhuli':['ad5180fff668ac1bc93c368cb6f0a2cb','d563a3e51f3b34d2f02c5159df010db43eaefaa7']}
     #names={'app_chubao':['77f18b5fbe3979e9f53ffe09b6004ee5','5f373003a793fd123e13de399ab502fc35b3e34a']}
     names = [{'app_ali':['dbc1e0a09f15cac4cabf38ed5c0d5974','7e5c0e6a82e026588f4abf02260fa7c3']},{'app_zhuli':['ad5180fff668ac1bc93c368cb6f0a2cb','d563a3e51f3b34d2f02c5159df010db43eaefaa7']}]
-    a = CallApi()
+    a = HandleCasesFromExcel()
     #if 'courier_barista' in api_case:
         #a.request_courier_barista(api_case)
         #input("Prease <enter>")
