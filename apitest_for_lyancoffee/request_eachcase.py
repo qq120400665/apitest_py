@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import sys
-reload(sys)
-sys.setdefaultencoding("utf-8")
+
+__author__ = 'Salyu'
+
 import requests
 import json
 from handle_cases_fromexcel import HandleCasesFromExcel
@@ -47,21 +47,22 @@ class ApiCall():
     def request_eachcase(self):
         #请求接口
         aa = HandleCasesFromExcel('./case_config.ini')
-        (methods,urls,case_id,cases) = aa.handle_caseid()
+        (case_id,methods,urls,cases,case_description) = aa.handle_caseid()
         results = []
         headers = {'content-type': 'application/x-www-form-urlencoded'}
-        print case_id
+        #print 'cases:',cases
         for i in range(len(case_id)):
             result = {}
             #print methods[i]
             #print urls[i]
             #print cases[i].values()[0]
-            response = self.apicall(methods[i],urls[i],cases[i].values()[0],headers)
+            print 'cases[i]:',cases[i]
+            response = self.apicall(methods[i],urls[i],cases[i],headers)
             #print cases[i].keys()[0]
             result[cases[i].keys()[0]] = response
             #print 'result:',json.dumps(result,encoding='UTF-8',ensure_ascii=False)
             results.append(result)
-        # print 'results:',json.dumps(results,encoding='UTF-8',ensure_ascii=False)
+        print 'results:',json.dumps(results,encoding='UTF-8',ensure_ascii=False)
         # for i in results:
         #     print i.keys(),':',json.dumps(i.values(),encoding='UTF-8',ensure_ascii=False)
         return results

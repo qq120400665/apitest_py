@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+
+__author__ = 'Salyu'
+
 import sys
 reload(sys)
-sys.setdefaultencoding( "utf-8" )
+sys.setdefaultencoding("utf-8")
 import xlrd
 import requests
 import json
@@ -11,6 +14,8 @@ import MySQLdb
 import hashlib
 import copy
 import configparser
+# from response_assert import ResponseAssert
+
 
 
 class HandleCasesFromExcel():
@@ -190,17 +195,17 @@ class HandleCasesFromExcel():
                 if i == 'description':
                     del caselist[i]
         caselists_params = caselists
-        print 'caselists_params:',json.dumps(caselists_params,encoding='UTF-8',ensure_ascii=False)
+        # print 'caselists_params:',json.dumps(caselists_params,encoding='UTF-8',ensure_ascii=False)
         return caselists_params
 
     def handle_eachcase1(self):
         #将元素{}转为[]
-        caselists = self.handle_eachcase(apitest)
+        caselists = self.handle_eachcase()
         for i in range(0,len(caselists)):
             if caselists[i]=={}:
                 caselists[i] = []
         caselists_params1 = caselists
-        print 'caselists_params1:',json.dumps(caselists_params1,encoding='UTF-8',ensure_ascii=False)
+        # print 'caselists_params1:',json.dumps(caselists_params1,encoding='UTF-8',ensure_ascii=False)
         return caselists_params1
 
     def handle_eachparam(self):
@@ -218,7 +223,7 @@ class HandleCasesFromExcel():
                 eachparam_connect = []
             else:
                 eachparams_connect.append([])
-        print 'eachparams_connect:',json.dumps(eachparams_connect,encoding='UTF-8',ensure_ascii=False)
+        # print 'eachparams_connect:',json.dumps(eachparams_connect,encoding='UTF-8',ensure_ascii=False)
         return eachparams_connect
 
     def handle_sign(self):
@@ -268,10 +273,10 @@ class HandleCasesFromExcel():
                 params['caselists_params_'+str(name.keys())+'_'+str(n)] = caselists_params[i]
                 params_ = copy.deepcopy(params)#创建副本，避免被引用
                 params_withsign.append(params_)
-                print 'params_withsign',params_withsign
+                # print 'params_withsign',params_withsign
             n+=1
-        print 'params_withsign_ex:',params_withsign
-        print len(params_withsign)
+        # print 'params_withsign_ex:',params_withsign
+        # print len(params_withsign)
         for i in range(0,len(params_withsign)):
             for j in range(0,len(sign)):
                 if i ==j:
@@ -287,6 +292,8 @@ class HandleCasesFromExcel():
         n = len(params)/len(eval(self.names))
         case_id = []
         cases = []
+        caselists = self.excel_table_byindex(self.apicase)
+        case_description = []
         while True:
             print u'共有'+ str(n) + u'条用例'
             # st = raw_input(u'请输入想运行的用例编号，比如2或者2,3或者ALL：')
@@ -297,7 +304,9 @@ class HandleCasesFromExcel():
             pass#逐个请求接口
             for  i in params:
                 case_id.append(i.keys()[0].split('_')[-1])
-                cases.append(i)
+                cases.append(i.values()[0])
+            for i in caselists:
+                case_description.append(i['description'])
         else:
             self.st = self.st.split(',')
             for i in self.st:
@@ -306,19 +315,41 @@ class HandleCasesFromExcel():
                         #print i
                         case_id.append(i)
                         #print j
-                        cases.append(j)
+                        cases.append(j.values()[0])
                         #pass #执行请求接口.
-        caselists = self.excel_table_byindex(self.apicase)
+            for i in self.st:
+                case_description.append(caselists[int(i)-1]['description'])
+                case_description.append(caselists[int(i)-1]['description'])
         methods = []
         urls = []
         for i in case_id:
             methods.append(caselists[int(i)-1]['method'])
             urls.append(caselists[int(i)-1]['url'])
+        print 'case_id:',case_id
         print 'methods:',methods
         print 'urls:',urls
-        print 'case_id:',case_id
         print 'cases:',json.dumps(cases,encoding='UTF-8',ensure_ascii=False)
-        return methods,urls,case_id,cases
+        print 'case_description:',json.dumps(case_description,encoding='UTF-8',ensure_ascii=False)
+        return case_id,methods,urls,cases,case_description
+
+    # def handle_for_report(self):
+    #     caseid_list = []
+    #     method_list = []
+    #     urls_list = []
+    #     cases_list = []
+    #     test_result = []
+    #     test_reason = []
+    #     data_report = []
+    #     (caseid,method,urls,cases,case_description) = self.handle_caseid()
+    #     for i in caseid:
+    #         for j in self.names:
+    #             caseid_list.append(j.split(':')[0]+'_'+i)
+    #     a = ResponseAssert()
+    #     (test_result,test_reason) = a.test_compare()
+    #     data_report = zip(caseid_list,case_description,method,urls,cases,test_result,test_reason)
+    #     print 'data_report:',data_report
+    #     return data_report
+
 
 
 
@@ -326,20 +357,12 @@ class HandleCasesFromExcel():
         pass
 
 
-# if __name__ =='__main__':
-#     # names=[{'app_qusong':['e2beb30fe93cd5ca9ed0ba705a4e6096','4252855545bfabcf39a7d7d2ea7e268b9925d81e']},
-#     # {'app_wokuaidao':['9c838579adda7f729382e226459340e3','7fd154b4fa0afa268f607dde2c381703aa108c21']},
-#     # {'app_weidian':['77f18b5fbe3979e9f53ffe09b6004ee5','5f373003a793fd123e13de399ab502fc35b3e34a']},
-#     # {'app_sweets':['9fde23f821e48ddb20164374957ef772','36412135402bc7d6821781dcc10e5b25abc1ab00']},
-#     # {'app_zhuli':['ad5180fff668ac1bc93c368cb6f0a2cb','d563a3e51f3b34d2f02c5159df010db43eaefaa7']}]
-#
-# #     #names={'app_weidian':['77f18b5fbe3979e9f53ffe09b6004ee5','5f373003a793fd123e13de399ab502fc35b3e34a']}
-# #     #names={'app_zhuli':['ad5180fff668ac1bc93c368cb6f0a2cb','d563a3e51f3b34d2f02c5159df010db43eaefaa7']}
-# #     #names={'app_chubao':['77f18b5fbe3979e9f53ffe09b6004ee5','5f373003a793fd123e13de399ab502fc35b3e34a']}
-#
-# if __name__ == '__main__':
-#     a = HandleCasesFromExcel('./case_config.ini')
-#     a.handle_caseid()
+
+
+if __name__ == '__main__':
+    a = HandleCasesFromExcel('./case_config.ini')
+    # a.handle_caseid()
+    a.handle_caseid()
 #         #input("Prease <enter>")
 
 #     '''hash_new = hashlib.sha1() #或hashlib.md5()
