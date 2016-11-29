@@ -56,7 +56,7 @@ class ApiCall():
             #print methods[i]
             #print urls[i]
             #print cases[i].values()[0]
-            print 'cases[i]:',cases[i]
+            # print 'cases[i]:',cases[i]
             response = self.apicall(methods[i],urls[i],cases[i],headers)
             #print cases[i].keys()[0]
             result[cases[i].keys()[0]] = response

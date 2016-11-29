@@ -294,6 +294,7 @@ class HandleCasesFromExcel():
         cases = []
         caselists = self.excel_table_byindex(self.apicase)
         case_description = []
+        print 'len(self.names):',len(self.names)
         while True:
             print u'共有'+ str(n) + u'条用例'
             # st = raw_input(u'请输入想运行的用例编号，比如2或者2,3或者ALL：')
@@ -306,7 +307,10 @@ class HandleCasesFromExcel():
                 case_id.append(i.keys()[0].split('_')[-1])
                 cases.append(i.values()[0])
             for i in caselists:
-                case_description.append(i['description'])
+                n=1
+                while n <= len(eval(self.names)):
+                    case_description.append(i['description'])
+                    n +=1
         else:
             self.st = self.st.split(',')
             for i in self.st:
@@ -318,8 +322,10 @@ class HandleCasesFromExcel():
                         cases.append(j.values()[0])
                         #pass #执行请求接口.
             for i in self.st:
-                case_description.append(caselists[int(i)-1]['description'])
-                case_description.append(caselists[int(i)-1]['description'])
+                n=1
+                while n <= len(eval(self.names)):
+                    case_description.append(caselists[int(i)-1]['description'])
+                    n +=1
         methods = []
         urls = []
         for i in case_id:

@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><title>test_report_page</title>
+</head>
+<body><h1 align="center">test report</h1>
+<p>测试总耗时：00:00:00</p>
+<p>测试用例数：20&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp成功用例数：8&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp失败用例数：12&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp出错用例数：0</p>
+<table cellpadding="1" cellspacing="0" border="1" class="table"><tr><td bgcolor="#ABABAB" align="center">用例ID</td>
+<td bgcolor="#ABABAB" align="center">接口描述</td>
+<td bgcolor="#ABABAB" align="center">请求方法</td>
+<td bgcolor="#ABABAB" align="center">请求URL</td>
+<td bgcolor="#ABABAB" align="center">请求参数/数据</td>
+<td bgcolor="#ABABAB" align="center">测试结果</td>
+<td bgcolor="#ABABAB" align="center">失败原因</td>
+
+</tr>
+<tr><td align="center">'app_ali'_1</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/citys</td>
+<td>{'nonce': '1480403773000', 'sign': '8aeb84113ecd5347ec942463218c6fdb484040c5', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974'}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_1</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/citys</td>
+<td>{'nonce': '1480403773000', 'sign': '4653064e69e872dcb982ee9b33d0f1b9ea5e2759', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb'}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_ali'_2</td>
+<td>2.2.2基于提供的经纬度来判断当前可以提供服务的咖啡品牌列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/providers</td>
+<td>{'nonce': '1480403773000', 'sign': '6b3cb227a08e5b69f3758f7559de208de2d39e63', u'geo': u'31.168226,121.403914', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974'}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_2</td>
+<td>2.2.2基于提供的经纬度来判断当前可以提供服务的咖啡品牌列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/providers</td>
+<td>{'nonce': '1480403773000', 'sign': 'dc65d8330d947d752ab46a6e84f037199b82cb6a', u'geo': u'31.168226,121.403914', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb'}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_ali'_3</td>
+<td>2.2.3基于品牌商id 得到当前品牌商可以售卖的商品信息</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/provider/goods</td>
+<td>{'nonce': '1480403773000', u'providerId': 12.0, 'sign': 'bd20413b8f309a15e1a694ac978536c18e4a5d18', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974'}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_3</td>
+<td>2.2.3基于品牌商id 得到当前品牌商可以售卖的商品信息</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/provider/goods</td>
+<td>{'nonce': '1480403773000', u'providerId': 12.0, 'sign': '0025cba7ac7aa178da511b5a3c385ee4991929a7', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb'}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_ali'_4</td>
+<td>2.2.4基于用户下单的收货地址,获取当前可以支持的配送时间</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/expectedtimes</td>
+<td>{'nonce': '1480403773000', u'city': u'\u4e0a\u6d77', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974', 'sign': '46e408a661c1a4289e1a8d96314eeed9f63787da', u'providerId': 12.0, u'address': u'\u5f90\u6c47\u533a\u53e4\u7f8e\u8def1515\u53f7'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 202, "errorMsg": "\u5f53\u524d\u5730\u5740\u4e0d\u5728\u914d\u9001\u8303\u56f4"}']</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_4</td>
+<td>2.2.4基于用户下单的收货地址,获取当前可以支持的配送时间</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/expectedtimes</td>
+<td>{'nonce': '1480403773000', u'city': u'\u4e0a\u6d77', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb', 'sign': '88f5f4696fb38e55b0cb4ebac7b7453711066996', u'providerId': 12.0, u'address': u'\u5f90\u6c47\u533a\u53e4\u7f8e\u8def1515\u53f7'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 202, "errorMsg": "\u5f53\u524d\u5730\u5740\u4e0d\u5728\u914d\u9001\u8303\u56f4"}']</td>
+
+</tr>
+<tr><td align="center">'app_ali'_5</td>
+<td>2.2.5创建一个订单</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v2/orders/create</td>
+<td>{'nonce': '1480403773000', 'sign': 'a189ceb1e34d8c5c73e3acc917f576bdf6c8d42e', u'data': u'{"recipient_name":"\u5b81-T","recipient_phone":"13701230123","city":"\u4e0a\u6d77","building":"\u53e4\u7f8e\u8def1515\u53f7","room":"","buyer_name":"Laiye-T","buyer_phone":"13803210321","provider_id":12,"expected_time_id":16,"remark":"","carts":[{"id":427,"quantity":5}]}', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 40001, "errorMsg": "\u8ba2\u5355\u660e\u7ec6\u6709\u8bef\uff1a\u5546\u54c1\u4e0d\u5c5e\u4e8e\u6307\u5b9a\u7684\u54c1\u724c\uff0c\u6216\u8005\u4e0d\u5728\u552e"}']</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_5</td>
+<td>2.2.5创建一个订单</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v2/orders/create</td>
+<td>{'nonce': '1480403773000', 'sign': '3c446d707f40522da88e735618bab89db163f206', u'data': u'{"recipient_name":"\u5b81-T","recipient_phone":"13701230123","city":"\u4e0a\u6d77","building":"\u53e4\u7f8e\u8def1515\u53f7","room":"","buyer_name":"Laiye-T","buyer_phone":"13803210321","provider_id":12,"expected_time_id":16,"remark":"","carts":[{"id":427,"quantity":5}]}', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 40001, "errorMsg": "\u8ba2\u5355\u660e\u7ec6\u6709\u8bef\uff1a\u5546\u54c1\u4e0d\u5c5e\u4e8e\u6307\u5b9a\u7684\u54c1\u724c\uff0c\u6216\u8005\u4e0d\u5728\u552e"}']</td>
+
+</tr>
+<tr><td align="center">'app_ali'_6</td>
+<td>2.8检查是否可以下单</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/check</td>
+<td>{'nonce': '1480403773000', u'city': u'\u4e0a\u6d77', u'expectedid': 12.0, 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974', 'sign': 'fb5acddf90a56a885c36997b7501257eeb4aa9f6', u'address': u'\u5f90\u6c47\u533a\u53e4\u7f8e\u8def1515\u53f7'}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_6</td>
+<td>2.8检查是否可以下单</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/check</td>
+<td>{'nonce': '1480403773000', u'city': u'\u4e0a\u6d77', u'expectedid': 12.0, 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb', 'sign': 'b1da3b422f01897393babcc95a2634c6b03a46a8', u'address': u'\u5f90\u6c47\u533a\u53e4\u7f8e\u8def1515\u53f7'}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_ali'_7</td>
+<td>2.2.5V1V1V1V1创建一个订单</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/create</td>
+<td>{'nonce': '1480403773000', 'sign': '3d1fcf2c7101938fdff139661445433a2462a58b', u'data': u'{"name":"\u5f20\u4e09","phone":"18671355819","city":"\u4e0a\u6d77","address":"\u53e4\u7f8e\u8def1515\u53f7","user_phone":"18671355819","user_address":"\u53e4\u7f8e\u8def",\n"price":90,"rebates":11,"pay_channel":2,"order_id":"13","expected_id":27,"order_status":2000,carts:[{"id":"445","num":"1"}]}\n', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 41001, "errorMsg": "\u7b2c\u4e09\u65b9\u4e0b\u5355\u63a5\u53e3\u4e0d\u652f\u6301\u8be5\u54c1\u724c\uff0c\u8bf7\u5148\u8c03\u7528\u54c1\u724c\u67e5\u8be2\u63a5\u53e3"}']</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_7</td>
+<td>2.2.5V1V1V1V1创建一个订单</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/create</td>
+<td>{'nonce': '1480403773000', 'sign': '70a680628340ac20c8206c404fb8a8d124321f78', u'data': u'{"name":"\u5f20\u4e09","phone":"18671355819","city":"\u4e0a\u6d77","address":"\u53e4\u7f8e\u8def1515\u53f7","user_phone":"18671355819","user_address":"\u53e4\u7f8e\u8def",\n"price":90,"rebates":11,"pay_channel":2,"order_id":"13","expected_id":27,"order_status":2000,carts:[{"id":"445","num":"1"}]}\n', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 41001, "errorMsg": "\u7b2c\u4e09\u65b9\u4e0b\u5355\u63a5\u53e3\u4e0d\u652f\u6301\u8be5\u54c1\u724c\uff0c\u8bf7\u5148\u8c03\u7528\u54c1\u724c\u67e5\u8be2\u63a5\u53e3"}']</td>
+
+</tr>
+<tr><td align="center">'app_ali'_8</td>
+<td>2.2.6根据订单id，查询订单状态</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/inquire</td>
+<td>{'nonce': '1480403773000', u'order_id': 51559.0, 'sign': '5f8088ba8b70565643c72a82c5edb503e759ea7c', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 202, "errorMsg": "\u4e0d\u5b58\u5728\u8be5\u8ba2\u5355"}']</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_8</td>
+<td>2.2.6根据订单id，查询订单状态</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/inquire</td>
+<td>{'nonce': '1480403773000', u'order_id': 51559.0, 'sign': '42e625703713a3fd57fc92c1c19616fdfa87af82', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 202, "errorMsg": "\u4e0d\u5b58\u5728\u8be5\u8ba2\u5355"}']</td>
+
+</tr>
+<tr><td align="center">'app_ali'_9</td>
+<td>2.2.6根据订单id，查询订单状态</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/inquire</td>
+<td>{'nonce': '1480403773000', u'order_id': 52038.0, 'sign': 'a6911f8effc946dc3bebbaeb0697898f52ea79f8', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 202, "errorMsg": "\u4e0d\u5b58\u5728\u8be5\u8ba2\u5355"}']</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_9</td>
+<td>2.2.6根据订单id，查询订单状态</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/inquire</td>
+<td>{'nonce': '1480403773000', u'order_id': 52038.0, 'sign': 'c275478a28b1ba03a832f1ef862c6b5734b3cbd3', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 202, "errorMsg": "\u4e0d\u5b58\u5728\u8be5\u8ba2\u5355"}']</td>
+
+</tr>
+<tr><td align="center">'app_ali'_10</td>
+<td>阿里汽车下单接口字段填写</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v2/orders/create</td>
+<td>{'nonce': '1480403773000', 'sign': '71030889bb114f6adeceebbdb06e81dce86e3d31', u'data': u'{"recipient_name":"\u6d4b\u8bd5","recipient_phone":"13701230123","city":"\u4e0a\u6d77","building":"\u53e4\u7f8e\u8def1515\u53f7","room":"A","buyer_name":"Laiye-T","buyer_phone":"13803210321","provider_id":12,"expected_time_id":"0","carts":[{"id":488,"quantity":5}]}', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 40001, "errorMsg": "\u8ba2\u5355\u660e\u7ec6\u6709\u8bef\uff1a\u5546\u54c1\u4e0d\u5c5e\u4e8e\u6307\u5b9a\u7684\u54c1\u724c\uff0c\u6216\u8005\u4e0d\u5728\u552e"}']</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_10</td>
+<td>阿里汽车下单接口字段填写</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v2/orders/create</td>
+<td>{'nonce': '1480403773000', 'sign': '007a02228ee1e9abb776eb9234aa2640d9b09d0e', u'data': u'{"recipient_name":"\u6d4b\u8bd5","recipient_phone":"13701230123","city":"\u4e0a\u6d77","building":"\u53e4\u7f8e\u8def1515\u53f7","room":"A","buyer_name":"Laiye-T","buyer_phone":"13803210321","provider_id":12,"expected_time_id":"0","carts":[{"id":488,"quantity":5}]}', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 40001, "errorMsg": "\u8ba2\u5355\u660e\u7ec6\u6709\u8bef\uff1a\u5546\u54c1\u4e0d\u5c5e\u4e8e\u6307\u5b9a\u7684\u54c1\u724c\uff0c\u6216\u8005\u4e0d\u5728\u552e"}']</td>
+
+</tr>
+</table>
+</body>
+</html>

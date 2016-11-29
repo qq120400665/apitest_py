@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><title>test_report_page</title>
+</head>
+<body><h1 align="center">test report</h1>
+<p>测试总耗时：00:00:00</p>
+<p>测试用例数：20&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp成功用例数：8&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp失败用例数：12&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp出错用例数：0</p>
+<table cellpadding="1" cellspacing="0" border="1" class="table"><tr><td bgcolor="#ABABAB" align="center">用例ID</td>
+<td bgcolor="#ABABAB" align="center">接口描述</td>
+<td bgcolor="#ABABAB" align="center">请求方法</td>
+<td bgcolor="#ABABAB" align="center">请求URL</td>
+<td bgcolor="#ABABAB" align="center">请求参数/数据</td>
+<td bgcolor="#ABABAB" align="center">测试结果</td>
+<td bgcolor="#ABABAB" align="center">失败原因</td>
+
+</tr>
+<tr><td align="center">'app_ali'_1</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/citys</td>
+<td>[</td>
+<td>Pass</td>
+<td>[</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_1</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/citys</td>
+<td>{</td>
+<td>Pass</td>
+<td>"</td>
+
+</tr>
+<tr><td align="center">'app_ali'_2</td>
+<td>2.2.2基于提供的经纬度来判断当前可以提供服务的咖啡品牌列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/providers</td>
+<td>"</td>
+<td>Pass</td>
+<td>"</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_2</td>
+<td>2.2.2基于提供的经纬度来判断当前可以提供服务的咖啡品牌列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/providers</td>
+<td>n</td>
+<td>Pass</td>
+<td>,</td>
+
+</tr>
+<tr><td align="center">'app_ali'_3</td>
+<td>2.2.3基于品牌商id 得到当前品牌商可以售卖的商品信息</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/provider/goods</td>
+<td>o</td>
+<td>Pass</td>
+<td> </td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_3</td>
+<td>2.2.3基于品牌商id 得到当前品牌商可以售卖的商品信息</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/provider/goods</td>
+<td>n</td>
+<td>Pass</td>
+<td>"</td>
+
+</tr>
+<tr><td align="center">'app_ali'_4</td>
+<td>2.2.4基于用户下单的收货地址,获取当前可以支持的配送时间</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/expectedtimes</td>
+<td>c</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>"</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_4</td>
+<td>2.2.4基于用户下单的收货地址,获取当前可以支持的配送时间</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/expectedtimes</td>
+<td>e</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>,</td>
+
+</tr>
+<tr><td align="center">'app_ali'_5</td>
+<td>2.2.5创建一个订单</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v2/orders/create</td>
+<td>"</td>
+<td bgcolor="#FF0000">Fail</td>
+<td> </td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_5</td>
+<td>2.2.5创建一个订单</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v2/orders/create</td>
+<td>:</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>"</td>
+
+</tr>
+<tr><td align="center">'app_ali'_6</td>
+<td>2.8检查是否可以下单</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/check</td>
+<td> </td>
+<td>Pass</td>
+<td>"</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_6</td>
+<td>2.8检查是否可以下单</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/check</td>
+<td>"</td>
+<td>Pass</td>
+<td>,</td>
+
+</tr>
+<tr><td align="center">'app_ali'_7</td>
+<td>2.2.5V1V1V1V1创建一个订单</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/create</td>
+<td>1</td>
+<td bgcolor="#FF0000">Fail</td>
+<td> </td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_7</td>
+<td>2.2.5V1V1V1V1创建一个订单</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/create</td>
+<td>4</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>"</td>
+
+</tr>
+<tr><td align="center">'app_ali'_8</td>
+<td>2.2.6根据订单id，查询订单状态</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/inquire</td>
+<td>8</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>"</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_8</td>
+<td>2.2.6根据订单id，查询订单状态</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/inquire</td>
+<td>0</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>,</td>
+
+</tr>
+<tr><td align="center">'app_ali'_9</td>
+<td>2.2.6根据订单id，查询订单状态</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/inquire</td>
+<td>4</td>
+<td bgcolor="#FF0000">Fail</td>
+<td> </td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_9</td>
+<td>2.2.6根据订单id，查询订单状态</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/inquire</td>
+<td>0</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>"</td>
+
+</tr>
+<tr><td align="center">'app_ali'_10</td>
+<td>阿里汽车下单接口字段填写</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v2/orders/create</td>
+<td>5</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>"</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_10</td>
+<td>阿里汽车下单接口字段填写</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v2/orders/create</td>
+<td>5</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>,</td>
+
+</tr>
+</table>
+</body>
+</html>

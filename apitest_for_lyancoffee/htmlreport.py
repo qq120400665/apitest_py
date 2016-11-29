@@ -8,6 +8,7 @@ import time
 import os
 from request_eachcase import ApiCall
 from response_assert import ResponseAssert
+import json
 
 
 
@@ -39,7 +40,6 @@ class HtmlReport:
         tab = table( border='1', cellpadding='1', cellspacing='0', cl='table')
         tab1 = page << tab
         tab1 << tr(td('用例ID', bgcolor='#ABABAB',align='center')+ td('接口描述',bgcolor='#ABABAB', align='center')+ td('请求方法',bgcolor='#ABABAB', align='center') + td('请求URL',bgcolor='#ABABAB',align='center')+td('请求参数/数据', bgcolor='#ABABAB',align='center')+ td('测试结果', bgcolor='#ABABAB', align='center')+td('失败原因',bgcolor='#ABABAB',align='center'))
-        page.printOut()
 
         # 查询所有测试结果并记录到html文档
         # query = ('SELECT case_id, http_method, request_name, request_url,'
@@ -47,14 +47,15 @@ class HtmlReport:
         # self.cursor.execute(query)
         # query_result = self.cursor.fetchall()
         for row in self.data_report:
+            # print 'row:',row
             if row[5] == 'Pass':
                 tab1<< tr(td(row[0], align='center') + td(row[1]) +
                               td(row[2]) + td(row[3], align='center') +
-                              td(row[4]) + td(row[5]) + td(row[6]))
+                              td(json.dumps(row[4],encoding='UTF-8',ensure_ascii=False).replace('\\','')) + td(row[5]) + td(row[6]))
             else:
                 tab1<< tr(td(row[0], align='center') + td(row[1]) +
                               td(row[2]) + td(row[3], align='center') +
-                              td(row[4]) + td(row[5],bgcolor='#FF0000') + td(row[6]))
+                              td(json.dumps(row[4],encoding='UTF-8',ensure_ascii=False).replace('\\','')) + td(row[5],bgcolor='#FF0000') + td(json.dumps(row[6],encoding='UTF-8',ensure_ascii=False).replace('\\','')))
         # self._set_result_filename(file)
         report = os.listdir(r'C:\\Users\\lyancoffee\\Desktop\\apitest\\apitest_for_lyancoffee\\report')
         report_num = len(report)

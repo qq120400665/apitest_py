@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><title>test_report_page</title>
+</head>
+<body><h1 align="center">test report</h1>
+<p>测试总耗时：00:00:00</p>
+<p>测试用例数：20&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp成功用例数：8&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp失败用例数：12&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp出错用例数：0</p>
+<table cellpadding="1" cellspacing="0" border="1" class="table"><tr><td bgcolor="#ABABAB" align="center">用例ID</td>
+<td bgcolor="#ABABAB" align="center">接口描述</td>
+<td bgcolor="#ABABAB" align="center">请求方法</td>
+<td bgcolor="#ABABAB" align="center">请求URL</td>
+<td bgcolor="#ABABAB" align="center">请求参数/数据</td>
+<td bgcolor="#ABABAB" align="center">测试结果</td>
+<td bgcolor="#ABABAB" align="center">失败原因</td>
+
+</tr>
+<tr><td align="center">'app_ali'_1</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/citys</td>
+<td>{"nonce": "1480408766000", "sign": "4cc5df5b1012ea87bce20cd4ad73b25c05e0d912", "appid": "dbc1e0a09f15cac4cabf38ed5c0d5974"}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_1</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/citys</td>
+<td>{"nonce": "1480408766000", "sign": "40000dcc56bdf6c0c28d465a2460fb085719b513", "appid": "ad5180fff668ac1bc93c368cb6f0a2cb"}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_ali'_2</td>
+<td>2.2.2基于提供的经纬度来判断当前可以提供服务的咖啡品牌列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/providers</td>
+<td>{"nonce": "1480408766000", "sign": "e36b9fd6dc94cdf28bd1dd9894d7b45f69c1b7df", "geo": "31.168226,121.403914", "appid": "dbc1e0a09f15cac4cabf38ed5c0d5974"}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_2</td>
+<td>2.2.2基于提供的经纬度来判断当前可以提供服务的咖啡品牌列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/providers</td>
+<td>{"nonce": "1480408766000", "sign": "48d79f86cc8d9458c01d54f2a486f11b3f62659f", "geo": "31.168226,121.403914", "appid": "ad5180fff668ac1bc93c368cb6f0a2cb"}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_ali'_3</td>
+<td>2.2.3基于品牌商id 得到当前品牌商可以售卖的商品信息</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/provider/goods</td>
+<td>{"nonce": "1480408766000", "providerId": 12.0, "sign": "d8b67c98925144136cd5e6839f72c668d72de450", "appid": "dbc1e0a09f15cac4cabf38ed5c0d5974"}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_3</td>
+<td>2.2.3基于品牌商id 得到当前品牌商可以售卖的商品信息</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/provider/goods</td>
+<td>{"nonce": "1480408766000", "providerId": 12.0, "sign": "4d6c10af25665a3a79594e6ae4fafd06dd19702d", "appid": "ad5180fff668ac1bc93c368cb6f0a2cb"}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_ali'_4</td>
+<td>2.2.4基于用户下单的收货地址,获取当前可以支持的配送时间</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/expectedtimes</td>
+<td>{"nonce": "1480408766000", "city": "上海", "appid": "dbc1e0a09f15cac4cabf38ed5c0d5974", "sign": "8e12d2a546f3a0f6b413bdc81f7677e9b36332e9", "providerId": 12.0, "address": "徐汇区古美路1515号"}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>["{"status": 202, "errorMsg": "当前地址不在配送范围"}"]</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_4</td>
+<td>2.2.4基于用户下单的收货地址,获取当前可以支持的配送时间</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/expectedtimes</td>
+<td>{"nonce": "1480408766000", "city": "上海", "appid": "ad5180fff668ac1bc93c368cb6f0a2cb", "sign": "b63363f3308f7a8407307fea08e048ffefbe27e0", "providerId": 12.0, "address": "徐汇区古美路1515号"}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>["{"status": 202, "errorMsg": "当前地址不在配送范围"}"]</td>
+
+</tr>
+<tr><td align="center">'app_ali'_5</td>
+<td>2.2.5创建一个订单</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v2/orders/create</td>
+<td>{"nonce": "1480408766000", "sign": "4b563ddb248ba3a686007e205c2d9215a5968313", "data": "{"recipient_name":"宁-T","recipient_phone":"13701230123","city":"上海","building":"古美路1515号","room":"","buyer_name":"Laiye-T","buyer_phone":"13803210321","provider_id":12,"expected_time_id":16,"remark":"","carts":[{"id":427,"quantity":5}]}", "appid": "dbc1e0a09f15cac4cabf38ed5c0d5974"}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>["{"status": 30002, "errorMsg": "无效的配送时间，请选择其他时间段"}"]</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_5</td>
+<td>2.2.5创建一个订单</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v2/orders/create</td>
+<td>{"nonce": "1480408766000", "sign": "50d422ce04ca0780dea7b41964ffb6a3384b5342", "data": "{"recipient_name":"宁-T","recipient_phone":"13701230123","city":"上海","building":"古美路1515号","room":"","buyer_name":"Laiye-T","buyer_phone":"13803210321","provider_id":12,"expected_time_id":16,"remark":"","carts":[{"id":427,"quantity":5}]}", "appid": "ad5180fff668ac1bc93c368cb6f0a2cb"}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>["{"status": 30002, "errorMsg": "无效的配送时间，请选择其他时间段"}"]</td>
+
+</tr>
+<tr><td align="center">'app_ali'_6</td>
+<td>2.8检查是否可以下单</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/check</td>
+<td>{"nonce": "1480408766000", "city": "上海", "expectedid": 12.0, "appid": "dbc1e0a09f15cac4cabf38ed5c0d5974", "sign": "269f7db615f920cabec6e812b7a4b36f5e439c11", "address": "徐汇区古美路1515号"}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_6</td>
+<td>2.8检查是否可以下单</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/check</td>
+<td>{"nonce": "1480408766000", "city": "上海", "expectedid": 12.0, "appid": "ad5180fff668ac1bc93c368cb6f0a2cb", "sign": "bc109184b2fa4d31afbab772565b02ced6952133", "address": "徐汇区古美路1515号"}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_ali'_7</td>
+<td>2.2.5V1V1V1V1创建一个订单</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/create</td>
+<td>{"nonce": "1480408766000", "sign": "968ae36f68223a7e00bb504b30199f90bb9af4ad", "data": "{"name":"张三","phone":"18671355819","city":"上海","address":"古美路1515号","user_phone":"18671355819","user_address":"古美路",n"price":90,"rebates":11,"pay_channel":2,"order_id":"13","expected_id":27,"order_status":2000,carts:[{"id":"445","num":"1"}]}n", "appid": "dbc1e0a09f15cac4cabf38ed5c0d5974"}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>["{"status": 41001, "errorMsg": "第三方下单接口不支持该品牌，请先调用品牌查询接口"}"]</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_7</td>
+<td>2.2.5V1V1V1V1创建一个订单</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/create</td>
+<td>{"nonce": "1480408766000", "sign": "4c5cf2dc704f2c0fe3d334b1f66a1f4efcbbbc8a", "data": "{"name":"张三","phone":"18671355819","city":"上海","address":"古美路1515号","user_phone":"18671355819","user_address":"古美路",n"price":90,"rebates":11,"pay_channel":2,"order_id":"13","expected_id":27,"order_status":2000,carts:[{"id":"445","num":"1"}]}n", "appid": "ad5180fff668ac1bc93c368cb6f0a2cb"}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>["{"status": 41001, "errorMsg": "第三方下单接口不支持该品牌，请先调用品牌查询接口"}"]</td>
+
+</tr>
+<tr><td align="center">'app_ali'_8</td>
+<td>2.2.6根据订单id，查询订单状态</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/inquire</td>
+<td>{"nonce": "1480408766000", "order_id": 51559.0, "sign": "f14b673595cb5f8f45d016762ca29debf0907ae5", "appid": "dbc1e0a09f15cac4cabf38ed5c0d5974"}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>["{"status": 202, "errorMsg": "不存在该订单"}"]</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_8</td>
+<td>2.2.6根据订单id，查询订单状态</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/inquire</td>
+<td>{"nonce": "1480408766000", "order_id": 51559.0, "sign": "5d9498d1b899e89a9fe7941cb86993ed05afbd32", "appid": "ad5180fff668ac1bc93c368cb6f0a2cb"}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>["{"status": 202, "errorMsg": "不存在该订单"}"]</td>
+
+</tr>
+<tr><td align="center">'app_ali'_9</td>
+<td>2.2.6根据订单id，查询订单状态</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/inquire</td>
+<td>{"nonce": "1480408766000", "order_id": 52038.0, "sign": "65d5fa936b5a033bb033d8a6101d6b03c62ca8b2", "appid": "dbc1e0a09f15cac4cabf38ed5c0d5974"}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>["{"status": 202, "errorMsg": "不存在该订单"}"]</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_9</td>
+<td>2.2.6根据订单id，查询订单状态</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/inquire</td>
+<td>{"nonce": "1480408766000", "order_id": 52038.0, "sign": "44972aaae615cd890b30bf0c6473401c933ed0d7", "appid": "ad5180fff668ac1bc93c368cb6f0a2cb"}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>["{"status": 202, "errorMsg": "不存在该订单"}"]</td>
+
+</tr>
+<tr><td align="center">'app_ali'_10</td>
+<td>阿里汽车下单接口字段填写</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v2/orders/create</td>
+<td>{"nonce": "1480408766000", "sign": "573d4ca13bf1af72d24d9425dd577018fa5915a7", "data": "{"recipient_name":"测试","recipient_phone":"13701230123","city":"上海","building":"古美路1515号","room":"A","buyer_name":"Laiye-T","buyer_phone":"13803210321","provider_id":12,"expected_time_id":"0","carts":[{"id":488,"quantity":5}]}", "appid": "dbc1e0a09f15cac4cabf38ed5c0d5974"}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>["{"status": 40001, "errorMsg": "订单明细有误：商品不属于指定的品牌，或者不在售"}"]</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_10</td>
+<td>阿里汽车下单接口字段填写</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v2/orders/create</td>
+<td>{"nonce": "1480408766000", "sign": "4ee6f1cde35cea8236dac9939fe9992d7df02bc8", "data": "{"recipient_name":"测试","recipient_phone":"13701230123","city":"上海","building":"古美路1515号","room":"A","buyer_name":"Laiye-T","buyer_phone":"13803210321","provider_id":12,"expected_time_id":"0","carts":[{"id":488,"quantity":5}]}", "appid": "ad5180fff668ac1bc93c368cb6f0a2cb"}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>["{"status": 40001, "errorMsg": "订单明细有误：商品不属于指定的品牌，或者不在售"}"]</td>
+
+</tr>
+</table>
+</body>
+</html>

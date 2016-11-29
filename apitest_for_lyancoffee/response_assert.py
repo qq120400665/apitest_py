@@ -55,8 +55,17 @@ class ResponseAssert():
 		test_result_pass = test_result.count('Pass')
 		test_result_fail = test_result.count('Fail')
 		test_result_total = len(test_result)
+		# print 'caseid_list:',caseid_list
+		# print 'case_description:',json.dumps(case_description,encoding='UTF-8',ensure_ascii=False)
+		# print 'method:',method
+		# print 'urls:',urls
+		# print 'cases:',cases
+		# print 'test_result:',test_result
+		# print 'test_reason:',json.dumps(test_reason,encoding='UTF-8',ensure_ascii=False)
 		data_report = zip(caseid_list,case_description,method,urls,cases,test_result,test_reason)
-		print 'data_report:',json.dumps(data_report,encoding='UTF-8',ensure_ascii=False)
+
+		#print 'data_report:',json.dumps(data_report,encoding='UTF-8',ensure_ascii=False)
+		#print type(data_report),json.dumps(data_report,encoding='UTF-8',ensure_ascii=False)
 		return data_report,test_result_pass,test_result_fail,test_result_total
 
 globals = {'true': 0,'false':-1}

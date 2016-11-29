@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><title>test_report_page</title>
+</head>
+<body><h1 align="center">test report</h1>
+<p>测试总耗时：00:00:00</p>
+<p>测试用例数：20&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp成功用例数：8&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp失败用例数：12&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp出错用例数：0</p>
+<table cellpadding="1" cellspacing="0" border="1" class="table"><tr><td bgcolor="#ABABAB" align="center">用例ID</td>
+<td bgcolor="#ABABAB" align="center">接口描述</td>
+<td bgcolor="#ABABAB" align="center">请求方法</td>
+<td bgcolor="#ABABAB" align="center">请求URL</td>
+<td bgcolor="#ABABAB" align="center">请求参数/数据</td>
+<td bgcolor="#ABABAB" align="center">测试结果</td>
+<td bgcolor="#ABABAB" align="center">失败原因</td>
+
+</tr>
+<tr><td align="center">'app_ali'_1</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/citys</td>
+<td>{'nonce': '1480400446000', 'sign': 'aa00a592bdab0b968916778cf2ff35354a344dce', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974'}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_1</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/citys</td>
+<td>{'nonce': '1480400446000', 'sign': '283340ab43723635114d7de533b3fc85a070fe8b', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb'}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_ali'_2</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/providers</td>
+<td>{'nonce': '1480400446000', 'sign': '6f5458b04b6d54350785f6ad75185a1db00b1857', u'geo': u'31.168226,121.403914', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974'}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_2</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/providers</td>
+<td>{'nonce': '1480400446000', 'sign': '313bb23232c0336444a58f95bf08941a0ba3410d', u'geo': u'31.168226,121.403914', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb'}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_ali'_3</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/provider/goods</td>
+<td>{'nonce': '1480400446000', u'providerId': 12.0, 'sign': '2b3f135c0d8fd9d13e24dbc438cb897923acecc1', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974'}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_3</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/provider/goods</td>
+<td>{'nonce': '1480400446000', u'providerId': 12.0, 'sign': 'c2330570c2323a5672378bec5b178d8ecd79d9ee', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb'}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_ali'_4</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/expectedtimes</td>
+<td>{'nonce': '1480400446000', u'city': u'\u4e0a\u6d77', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974', 'sign': 'ae331a0b2820ab6d6210d2cfeaf04736ade0ac7d', u'providerId': 12.0, u'address': u'\u5f90\u6c47\u533a\u53e4\u7f8e\u8def1515\u53f7'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 202, "errorMsg": "\u5f53\u524d\u5730\u5740\u4e0d\u5728\u914d\u9001\u8303\u56f4"}']</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_4</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/expectedtimes</td>
+<td>{'nonce': '1480400446000', u'city': u'\u4e0a\u6d77', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb', 'sign': 'e59f068e00c9328adba2b7c6af4fdb0d94c7a8e1', u'providerId': 12.0, u'address': u'\u5f90\u6c47\u533a\u53e4\u7f8e\u8def1515\u53f7'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 202, "errorMsg": "\u5f53\u524d\u5730\u5740\u4e0d\u5728\u914d\u9001\u8303\u56f4"}']</td>
+
+</tr>
+<tr><td align="center">'app_ali'_5</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v2/orders/create</td>
+<td>{'nonce': '1480400446000', 'sign': 'b9d12f10b3e2fe3c2ce45b01e8d2b44d68b50e93', u'data': u'{"recipient_name":"\u5b81-T","recipient_phone":"13701230123","city":"\u4e0a\u6d77","building":"\u53e4\u7f8e\u8def1515\u53f7","room":"","buyer_name":"Laiye-T","buyer_phone":"13803210321","provider_id":12,"expected_time_id":16,"remark":"","carts":[{"id":427,"quantity":5}]}', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 40001, "errorMsg": "\u8ba2\u5355\u660e\u7ec6\u6709\u8bef\uff1a\u5546\u54c1\u4e0d\u5c5e\u4e8e\u6307\u5b9a\u7684\u54c1\u724c\uff0c\u6216\u8005\u4e0d\u5728\u552e"}']</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_5</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v2/orders/create</td>
+<td>{'nonce': '1480400446000', 'sign': '24100dc27e7dfe96f93a84bc257fe9c645d85f03', u'data': u'{"recipient_name":"\u5b81-T","recipient_phone":"13701230123","city":"\u4e0a\u6d77","building":"\u53e4\u7f8e\u8def1515\u53f7","room":"","buyer_name":"Laiye-T","buyer_phone":"13803210321","provider_id":12,"expected_time_id":16,"remark":"","carts":[{"id":427,"quantity":5}]}', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 40001, "errorMsg": "\u8ba2\u5355\u660e\u7ec6\u6709\u8bef\uff1a\u5546\u54c1\u4e0d\u5c5e\u4e8e\u6307\u5b9a\u7684\u54c1\u724c\uff0c\u6216\u8005\u4e0d\u5728\u552e"}']</td>
+
+</tr>
+<tr><td align="center">'app_ali'_6</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/check</td>
+<td>{'nonce': '1480400446000', u'city': u'\u4e0a\u6d77', u'expectedid': 12.0, 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974', 'sign': '05a356bd2d7f9bcb514a8841ea5a181eb28f839c', u'address': u'\u5f90\u6c47\u533a\u53e4\u7f8e\u8def1515\u53f7'}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_6</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/check</td>
+<td>{'nonce': '1480400446000', u'city': u'\u4e0a\u6d77', u'expectedid': 12.0, 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb', 'sign': '212237e3a576fe9410d88ebe0e8b47d28a7bf61d', u'address': u'\u5f90\u6c47\u533a\u53e4\u7f8e\u8def1515\u53f7'}</td>
+<td>Pass</td>
+<td></td>
+
+</tr>
+<tr><td align="center">'app_ali'_7</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/create</td>
+<td>{'nonce': '1480400446000', 'sign': 'e79f2dd7d465616f7328fca79ead625b5147102d', u'data': u'{"name":"\u5f20\u4e09","phone":"18671355819","city":"\u4e0a\u6d77","address":"\u53e4\u7f8e\u8def1515\u53f7","user_phone":"18671355819","user_address":"\u53e4\u7f8e\u8def",\n"price":90,"rebates":11,"pay_channel":2,"order_id":"13","expected_id":27,"order_status":2000,carts:[{"id":"445","num":"1"}]}\n', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 41001, "errorMsg": "\u7b2c\u4e09\u65b9\u4e0b\u5355\u63a5\u53e3\u4e0d\u652f\u6301\u8be5\u54c1\u724c\uff0c\u8bf7\u5148\u8c03\u7528\u54c1\u724c\u67e5\u8be2\u63a5\u53e3"}']</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_7</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/create</td>
+<td>{'nonce': '1480400446000', 'sign': '10683ef13a33f3e19d07adbe3d678d80aa9db310', u'data': u'{"name":"\u5f20\u4e09","phone":"18671355819","city":"\u4e0a\u6d77","address":"\u53e4\u7f8e\u8def1515\u53f7","user_phone":"18671355819","user_address":"\u53e4\u7f8e\u8def",\n"price":90,"rebates":11,"pay_channel":2,"order_id":"13","expected_id":27,"order_status":2000,carts:[{"id":"445","num":"1"}]}\n', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 41001, "errorMsg": "\u7b2c\u4e09\u65b9\u4e0b\u5355\u63a5\u53e3\u4e0d\u652f\u6301\u8be5\u54c1\u724c\uff0c\u8bf7\u5148\u8c03\u7528\u54c1\u724c\u67e5\u8be2\u63a5\u53e3"}']</td>
+
+</tr>
+<tr><td align="center">'app_ali'_8</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/inquire</td>
+<td>{'nonce': '1480400446000', u'order_id': 51559.0, 'sign': '423c29f82275ef84955723f78f7a4a128a7bb378', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 202, "errorMsg": "\u4e0d\u5b58\u5728\u8be5\u8ba2\u5355"}']</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_8</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/inquire</td>
+<td>{'nonce': '1480400446000', u'order_id': 51559.0, 'sign': '4563f45a6eee33ac99eab855e970c56013308877', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 202, "errorMsg": "\u4e0d\u5b58\u5728\u8be5\u8ba2\u5355"}']</td>
+
+</tr>
+<tr><td align="center">'app_ali'_9</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/inquire</td>
+<td>{'nonce': '1480400446000', u'order_id': 52038.0, 'sign': '22f47af673758fb0ccdcbaf411cf9fb2e0f46067', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 202, "errorMsg": "\u4e0d\u5b58\u5728\u8be5\u8ba2\u5355"}']</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_9</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/order/inquire</td>
+<td>{'nonce': '1480400446000', u'order_id': 52038.0, 'sign': '8fbe0a78549f07c05cc2cd44e5f03b070011b8df', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 202, "errorMsg": "\u4e0d\u5b58\u5728\u8be5\u8ba2\u5355"}']</td>
+
+</tr>
+<tr><td align="center">'app_ali'_10</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v2/orders/create</td>
+<td>{'nonce': '1480400446000', 'sign': '57c359c977d468be18abf40f6e76779d4578f749', u'data': u'{"recipient_name":"\u6d4b\u8bd5","recipient_phone":"13701230123","city":"\u4e0a\u6d77","building":"\u53e4\u7f8e\u8def1515\u53f7","room":"A","buyer_name":"Laiye-T","buyer_phone":"13803210321","provider_id":12,"expected_time_id":"0","carts":[{"id":488,"quantity":5}]}', 'appid': 'dbc1e0a09f15cac4cabf38ed5c0d5974'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 40001, "errorMsg": "\u8ba2\u5355\u660e\u7ec6\u6709\u8bef\uff1a\u5546\u54c1\u4e0d\u5c5e\u4e8e\u6307\u5b9a\u7684\u54c1\u724c\uff0c\u6216\u8005\u4e0d\u5728\u552e"}']</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_10</td>
+<td>2.2.1连咖啡支持的所有城市的列表</td>
+<td>POST</td>
+<td align="center">http://apitest.lyancafe.com/third/v2/orders/create</td>
+<td>{'nonce': '1480400446000', 'sign': 'c5b3945e3eefd4048d76072d65ecf23701965319', u'data': u'{"recipient_name":"\u6d4b\u8bd5","recipient_phone":"13701230123","city":"\u4e0a\u6d77","building":"\u53e4\u7f8e\u8def1515\u53f7","room":"A","buyer_name":"Laiye-T","buyer_phone":"13803210321","provider_id":12,"expected_time_id":"0","carts":[{"id":488,"quantity":5}]}', 'appid': 'ad5180fff668ac1bc93c368cb6f0a2cb'}</td>
+<td bgcolor="#FF0000">Fail</td>
+<td>[u'{"status": 40001, "errorMsg": "\u8ba2\u5355\u660e\u7ec6\u6709\u8bef\uff1a\u5546\u54c1\u4e0d\u5c5e\u4e8e\u6307\u5b9a\u7684\u54c1\u724c\uff0c\u6216\u8005\u4e0d\u5728\u552e"}']</td>
+
+</tr>
+</table>
+</body>
+</html>
