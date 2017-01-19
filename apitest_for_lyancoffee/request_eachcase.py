@@ -47,7 +47,7 @@ class ApiCall():
     def request_eachcase(self):
         #请求接口
         aa = HandleCasesFromExcel('./case_config.ini')
-        (case_id,methods,urls,cases,case_description) = aa.handle_caseid()
+        (case_id,methods,urls,cases,case_description,test_way) = aa.handle_caseid()
         results = []
         headers = {'content-type': 'application/x-www-form-urlencoded'}
         #print 'cases:',cases

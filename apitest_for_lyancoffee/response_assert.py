@@ -25,7 +25,7 @@ class ResponseAssert():
 			if eval(i.values()[0],globals)['status'] == 0:
 				# self.assertEqual(eval(i.values()[0],globals)['status'], 0, msg='status不等于0')
 				self.test_result.append('Pass')
-				self.fail_reason.append('')
+				self.fail_reason.append(i.values())
 			else:
 				# print('%s' % e)
 				self.test_result.append('Fail')
@@ -41,8 +41,9 @@ class ResponseAssert():
 		test_result = []
 		test_reason = []
 		data_report = []
+		test_way = []
 		a = HandleCasesFromExcel('./case_config.ini')
-		(caseid,method,urls,cases,case_description) = a.handle_caseid()
+		(caseid,method,urls,cases,case_description,test_way) = a.handle_caseid()
 		#print 'caseid:',list(set(caseid))
 		for i in caseid:
 			if i not in case_id:
@@ -62,7 +63,7 @@ class ResponseAssert():
 		# print 'cases:',cases
 		# print 'test_result:',test_result
 		# print 'test_reason:',json.dumps(test_reason,encoding='UTF-8',ensure_ascii=False)
-		data_report = zip(caseid_list,case_description,method,urls,cases,test_result,test_reason)
+		data_report = zip(caseid_list,case_description,method,urls,cases,test_way,test_result,test_reason)
 
 		#print 'data_report:',json.dumps(data_report,encoding='UTF-8',ensure_ascii=False)
 		#print type(data_report),json.dumps(data_report,encoding='UTF-8',ensure_ascii=False)

@@ -39,7 +39,7 @@ class HtmlReport:
 
         tab = table( border='1', cellpadding='1', cellspacing='0', cl='table')
         tab1 = page << tab
-        tab1 << tr(td('用例ID', bgcolor='#ABABAB',align='center')+ td('接口描述',bgcolor='#ABABAB', align='center')+ td('请求方法',bgcolor='#ABABAB', align='center') + td('请求URL',bgcolor='#ABABAB',align='center')+td('请求参数/数据', bgcolor='#ABABAB',align='center')+ td('测试结果', bgcolor='#ABABAB', align='center')+td('失败原因',bgcolor='#ABABAB',align='center'))
+        tab1 << tr(td('用例ID', bgcolor='#ABABAB',align='center')+ td('接口描述',bgcolor='#ABABAB', align='center')+ td('请求方法',bgcolor='#ABABAB', align='center') + td('请求URL',bgcolor='#ABABAB',align='center')+td('请求参数/数据', bgcolor='#ABABAB',align='center')+td('测试方法',bgcolor='#ABABAB',align='center')+ td('测试结果', bgcolor='#ABABAB', align='center')+td('返回值',bgcolor='#ABABAB',align='center'))
 
         # 查询所有测试结果并记录到html文档
         # query = ('SELECT case_id, http_method, request_name, request_url,'
@@ -48,14 +48,14 @@ class HtmlReport:
         # query_result = self.cursor.fetchall()
         for row in self.data_report:
             # print 'row:',row
-            if row[5] == 'Pass':
+            if row[6] == 'Pass':
                 tab1<< tr(td(row[0], align='center') + td(row[1]) +
                               td(row[2]) + td(row[3], align='center') +
-                              td(json.dumps(row[4],encoding='UTF-8',ensure_ascii=False).replace('\\','')) + td(row[5]) + td(row[6]))
+                              td(json.dumps(row[4],encoding='UTF-8',ensure_ascii=False).replace('\\','')) +td(json.dumps(row[5],encoding='UTF-8',ensure_ascii=False))+ td(row[6]) + td(json.dumps(row[7],encoding='UTF-8',ensure_ascii=False).replace('\\','')))
             else:
                 tab1<< tr(td(row[0], align='center') + td(row[1]) +
                               td(row[2]) + td(row[3], align='center') +
-                              td(json.dumps(row[4],encoding='UTF-8',ensure_ascii=False).replace('\\','')) + td(row[5],bgcolor='#FF0000') + td(json.dumps(row[6],encoding='UTF-8',ensure_ascii=False).replace('\\','')))
+                              td(json.dumps(row[4],encoding='UTF-8',ensure_ascii=False).replace('\\','')) + td(json.dumps(row[5],encoding='UTF-8',ensure_ascii=False))+td(row[6],bgcolor='#FF0000') + td(json.dumps(row[7],encoding='UTF-8',ensure_ascii=False).replace('\\','')))
         # self._set_result_filename(file)
         report = os.listdir(r'C:\\Users\\lyancoffee\\Desktop\\apitest\\apitest_for_lyancoffee\\report')
         report_num = len(report)
