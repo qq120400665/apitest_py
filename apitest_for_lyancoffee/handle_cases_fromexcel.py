@@ -25,6 +25,7 @@ class HandleCasesFromExcel():
         self.st = config.get('CASEID','caseid')
         self.names = config.get('NAMES','names')
         self.apicase = config.get('FILE','apicase')
+        self.mode = config.get('MODE','mode')
 
 
     def open_excel(self,file1):
@@ -194,8 +195,10 @@ class HandleCasesFromExcel():
                     del caselist[i]
                 if i == 'description':
                     del caselist[i]
+                if i == 'test_way':
+                    del caselist[i]
         caselists_params = caselists
-        # print 'caselists_params:',json.dumps(caselists_params,encoding='UTF-8',ensure_ascii=False)
+        print 'caselists_params:',json.dumps(caselists_params,encoding='UTF-8',ensure_ascii=False)
         return caselists_params
 
     def handle_eachcase1(self):
@@ -205,7 +208,7 @@ class HandleCasesFromExcel():
             if caselists[i]=={}:
                 caselists[i] = []
         caselists_params1 = caselists
-        # print 'caselists_params1:',json.dumps(caselists_params1,encoding='UTF-8',ensure_ascii=False)
+        print 'caselists_params1:',json.dumps(caselists_params1,encoding='UTF-8',ensure_ascii=False)
         return caselists_params1
 
     def handle_eachparam(self):
@@ -214,17 +217,30 @@ class HandleCasesFromExcel():
         eachparam_connect = []
         eachparams_connect = []
         params = []
-        for caselists_param in caselists_params:
-            if caselists_param != {}:
-                for i in caselists_param.keys():
-                    eachparam = str(i)+'='+str(caselists_param[i])
-                    eachparam_connect.append(eachparam)
-                eachparams_connect.append(eachparam_connect)
-                eachparam_connect = []
-            else:
-                eachparams_connect.append([])
-        # print 'eachparams_connect:',json.dumps(eachparams_connect,encoding='UTF-8',ensure_ascii=False)
-        return eachparams_connect
+        if self.mode == '1':
+            for caselists_param in caselists_params:
+                if caselists_param != {}:
+                    for i in caselists_param.keys():
+                        eachparam = str(i)+'='+str(caselists_param[i])
+                        eachparam_connect.append(eachparam)
+                    eachparams_connect.append(eachparam_connect)
+                    eachparam_connect = []
+                else:
+                    eachparams_connect.append([])
+            print 'eachparams_connect:',json.dumps(eachparams_connect,encoding='UTF-8',ensure_ascii=False)
+            return eachparams_connect
+        if self.mode == '2':
+            for caselists_param in caselists_params:
+                if caselists_param != {}:
+                    for i in caselists_param.keys():
+                        eachparam = str(i)+str(caselists_param[i])
+                        eachparam_connect.append(eachparam)
+                    eachparams_connect.append(eachparam_connect)
+                    eachparam_connect = []
+                else:
+                    eachparams_connect.append([])
+            print 'eachparams_connect:',json.dumps(eachparams_connect,encoding='UTF-8',ensure_ascii=False)
+            return eachparams_connect
 
     def handle_sign(self):
         #用appid、appkey和参数生成sign
@@ -232,28 +248,52 @@ class HandleCasesFromExcel():
         eachparams_connect = self.handle_eachparam()
         sign = []
         n=1
-        for eachparam_connect in eachparams_connect:
-            for name in eval(self.names):
-                print 'name:',type(eval(self.names))
-                print '=============handle %s' %(name.keys()) ,'the %sst case' %n ,'======='
-                appid = 'appid='+str(name.values()[0][0])
-                appkey = 'appkey='+str(name.values()[0][1])
-                eachparam_connect.append(nonce)
-                eachparam_connect.append(appid)
-                eachparam_connect.sort()
-                eachparam_connect.append(appkey)
-        #print 'eachparam_connect:',eachparam_connect
-                sign_ex = '&'.join(eachparam_connect)
-                eachsign = hashlib.sha1(sign_ex).hexdigest()
-                print 'eachparam_connect:',eachparam_connect
-                eachparam_connect.remove(nonce)
-                eachparam_connect.remove(appid)
-                eachparam_connect.remove(appkey)
-                print eachsign
-                sign.append(eachsign)
-            n+=1
-        print 'sign:',sign
-        return sign
+        if self.mode == '1':
+            for eachparam_connect in eachparams_connect:
+                for name in eval(self.names):
+                    print 'name:',type(eval(self.names))
+                    print '=============handle %s' %(name.keys()) ,'the %sst case' %n ,'======='
+                    appid = 'appid='+str(name.values()[0][0])
+                    appkey = 'appkey='+str(name.values()[0][1])
+                    eachparam_connect.append(nonce)
+                    eachparam_connect.append(appid)
+                    eachparam_connect.sort()
+                    eachparam_connect.append(appkey)
+            #print 'eachparam_connect:',eachparam_connect
+                    sign_ex = '&'.join(eachparam_connect)
+                    eachsign = hashlib.sha1(sign_ex).hexdigest()
+                    print 'eachparam_connect:',eachparam_connect
+                    eachparam_connect.remove(nonce)
+                    eachparam_connect.remove(appid)
+                    eachparam_connect.remove(appkey)
+                    print eachsign
+                    sign.append(eachsign)
+                n+=1
+            print 'sign:',sign
+            return sign
+        if self.mode == '2':
+            for eachparam_connect in eachparams_connect:
+                for name in eval(self.names):
+                    print 'name:',type(eval(self.names))
+                    print '=============handle %s' %(name.keys()) ,'the %sst case' %n ,'======='
+                    secret = 'secret'+str(name.values()[0][0])
+                    appkey = 'appkey'+str(name.values()[0][1])
+                    eachparam_connect.append(nonce)
+                    eachparam_connect.append(secret)
+                    eachparam_connect.sort()
+                    eachparam_connect.append(appkey)
+            #print 'eachparam_connect:',eachparam_connect
+                    sign_ex = '&'.join(eachparam_connect)
+                    eachsign = hashlib.sha1(sign_ex).hexdigest()
+                    print 'eachparam_connect:',eachparam_connect
+                    eachparam_connect.remove(nonce)
+                    eachparam_connect.remove(secret)
+                    eachparam_connect.remove(appkey)
+                    print eachsign
+                    sign.append(eachsign)
+                n+=1
+            print 'sign:',sign
+            return sign
 
     def handle_params_withsign(self):
         nonce = str(time.time()).split('.')[0]+'000'
@@ -294,6 +334,7 @@ class HandleCasesFromExcel():
         cases = []
         caselists = self.excel_table_byindex(self.apicase)
         case_description = []
+        case_test_way = []
         print 'len(self.names):',len(self.names)
         while True:
             print u'共有'+ str(n) + u'条用例'
@@ -310,6 +351,7 @@ class HandleCasesFromExcel():
                 n=1
                 while n <= len(eval(self.names)):
                     case_description.append(i['description'])
+                    case_test_way.append(i['test_way'])
                     n +=1
         else:
             self.st = self.st.split(',')
@@ -325,6 +367,7 @@ class HandleCasesFromExcel():
                 n=1
                 while n <= len(eval(self.names)):
                     case_description.append(caselists[int(i)-1]['description'])
+                    case_test_way.append(caselists[int(i)-1]['test_way'])
                     n +=1
         methods = []
         urls = []
@@ -336,7 +379,8 @@ class HandleCasesFromExcel():
         print 'urls:',urls
         print 'cases:',json.dumps(cases,encoding='UTF-8',ensure_ascii=False)
         print 'case_description:',json.dumps(case_description,encoding='UTF-8',ensure_ascii=False)
-        return case_id,methods,urls,cases,case_description
+        print 'case_test_way:',json.dumps(case_test_way,encoding='UTF-8',ensure_ascii=False)
+        return case_id,methods,urls,cases,case_description,case_test_way
 
     # def handle_for_report(self):
     #     caseid_list = []
