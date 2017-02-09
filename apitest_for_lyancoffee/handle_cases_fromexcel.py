@@ -217,7 +217,7 @@ class HandleCasesFromExcel():
         eachparam_connect = []
         eachparams_connect = []
         params = []
-        if self.mode == 1:
+        if self.mode == '1':
             for caselists_param in caselists_params:
                 if caselists_param != {}:
                     for i in caselists_param.keys():
@@ -229,7 +229,7 @@ class HandleCasesFromExcel():
                     eachparams_connect.append([])
             print 'eachparams_connect:',json.dumps(eachparams_connect,encoding='UTF-8',ensure_ascii=False)
             return eachparams_connect
-        if self.mode == 2:
+        if self.mode == '2':
             for caselists_param in caselists_params:
                 if caselists_param != {}:
                     for i in caselists_param.keys():
@@ -242,13 +242,13 @@ class HandleCasesFromExcel():
             print 'eachparams_connect:',json.dumps(eachparams_connect,encoding='UTF-8',ensure_ascii=False)
             return eachparams_connect
 
-    def handle_sign(self,):
+    def handle_sign(self):
         #用appid、appkey和参数生成sign
         nonce = 'nonce='+str(time.time()).split('.')[0]+'000'
         eachparams_connect = self.handle_eachparam()
         sign = []
         n=1
-        if self.mode == 1:
+        if self.mode == '1':
             for eachparam_connect in eachparams_connect:
                 for name in eval(self.names):
                     print 'name:',type(eval(self.names))
@@ -271,29 +271,29 @@ class HandleCasesFromExcel():
                 n+=1
             print 'sign:',sign
             return sign
-        # if self.mode == 2:
-        #     for eachparam_connect in eachparams_connect:
-        #         for name in eval(self.names):
-        #             print 'name:',type(eval(self.names))
-        #             print '=============handle %s' %(name.keys()) ,'the %sst case' %n ,'======='
-        #             appid = 'appid='+str(name.values()[0][0])
-        #             appkey = 'appkey='+str(name.values()[0][1])
-        #             eachparam_connect.append(nonce)
-        #             eachparam_connect.append(appid)
-        #             eachparam_connect.sort()
-        #             eachparam_connect.append(appkey)
-        #     #print 'eachparam_connect:',eachparam_connect
-        #             sign_ex = '&'.join(eachparam_connect)
-        #             eachsign = hashlib.sha1(sign_ex).hexdigest()
-        #             print 'eachparam_connect:',eachparam_connect
-        #             eachparam_connect.remove(nonce)
-        #             eachparam_connect.remove(appid)
-        #             eachparam_connect.remove(appkey)
-        #             print eachsign
-        #             sign.append(eachsign)
-        #         n+=1
-        #     print 'sign:',sign
-        #     return sign
+        if self.mode == '2':
+            for eachparam_connect in eachparams_connect:
+                for name in eval(self.names):
+                    print 'name:',type(eval(self.names))
+                    print '=============handle %s' %(name.keys()) ,'the %sst case' %n ,'======='
+                    secret = 'secret'+str(name.values()[0][0])
+                    appkey = 'appkey'+str(name.values()[0][1])
+                    eachparam_connect.append(nonce)
+                    eachparam_connect.append(secret)
+                    eachparam_connect.sort()
+                    eachparam_connect.append(appkey)
+            #print 'eachparam_connect:',eachparam_connect
+                    sign_ex = '&'.join(eachparam_connect)
+                    eachsign = hashlib.sha1(sign_ex).hexdigest()
+                    print 'eachparam_connect:',eachparam_connect
+                    eachparam_connect.remove(nonce)
+                    eachparam_connect.remove(secret)
+                    eachparam_connect.remove(appkey)
+                    print eachsign
+                    sign.append(eachsign)
+                n+=1
+            print 'sign:',sign
+            return sign
 
     def handle_params_withsign(self):
         nonce = str(time.time()).split('.')[0]+'000'
