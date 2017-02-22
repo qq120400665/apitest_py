@@ -50,8 +50,8 @@ class ResponseAssert():
 				case_id.append(i)
 		for i in case_id:   #列表去重
 			for j in eval(self.names):
-				print 'j:',j
-				caseid_list.append(str(j).split(':')[0][1:]+'_'+i)
+				print 'j:',str(j).split(':')[0][2:-2]
+				caseid_list.append(str(j).split(':')[0][2:-2]+'_'+i)
 		(test_result,test_reason) = self.compare()
 		test_result_pass = test_result.count('Pass')
 		test_result_fail = test_result.count('Fail')
@@ -64,7 +64,7 @@ class ResponseAssert():
 		# print 'test_result:',test_result
 		# print 'test_reason:',json.dumps(test_reason,encoding='UTF-8',ensure_ascii=False)
 		data_report = zip(caseid_list,case_description,method,urls,cases,test_way,test_result,test_reason)
-
+		print 'caseid_list:',caseid_list
 		#print 'data_report:',json.dumps(data_report,encoding='UTF-8',ensure_ascii=False)
 		#print type(data_report),json.dumps(data_report,encoding='UTF-8',ensure_ascii=False)
 		return data_report,test_result_pass,test_result_fail,test_result_total

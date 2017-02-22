@@ -9,7 +9,7 @@ import os
 from request_eachcase import ApiCall
 from response_assert import ResponseAssert
 import json
-
+import datetime
 
 
 class HtmlReport:
@@ -62,6 +62,7 @@ class HtmlReport:
         now = time.strftime('%Y-%m-%d_%H_%M_%S',time.localtime())
         filename = 'C:\\Users\\lyancoffee\\Desktop\\apitest\\apitest_for_lyancoffee\\report\\'+now+'&'+str(report_num+1)+'.html'
         page.printOut(filename)
+        print 'self.data_report:',self.data_report
 
         # try:
         #     pass
@@ -88,6 +89,21 @@ class HtmlReport:
         self.time_took = time
         return self.time_took
 
+    #统计运行耗时装饰器
+    def time_me(self,fn):
+        def _wrapper(*args, **kwargs):
+            self.start = self.time.clock()
+            fn(*args, **kwargs)
+            print "%s cost %s second"%(fn.__name__, self.time.clock() - self.start)
+        return _wrapper
+    #统计耗时
+
+
 if __name__ == '__main__':
+    start_time = datetime.datetime.now()
     a = HtmlReport()
+    #a.generate_html()
+    time.sleep(61)
+    end_time = datetime.datetime.now()
+    a.set_time_took(str(end_time - start_time))
     a.generate_html()
