@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><title>test_report_page</title>
+</head>
+<body><h1 align="center">test report</h1>
+<p>测试总耗时：00:00:00</p>
+<p>测试用例数：10&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp成功用例数：10&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp失败用例数：0&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp出错用例数：0</p>
+<table cellpadding="1" cellspacing="0" border="1" class="table"><tr><td bgcolor="#ABABAB" align="center">用例ID</td>
+<td bgcolor="#ABABAB" align="center">接口描述</td>
+<td bgcolor="#ABABAB" align="center">请求方法</td>
+<td bgcolor="#ABABAB" align="center">请求URL</td>
+<td bgcolor="#ABABAB" align="center">请求参数/数据</td>
+<td bgcolor="#ABABAB" align="center">测试方法</td>
+<td bgcolor="#ABABAB" align="center">测试结果</td>
+<td bgcolor="#ABABAB" align="center">返回值</td>
+
+</tr>
+<tr><td align="center">'app_qusong'_2</td>
+<td>2.2.2基于提供的经纬度来判断当前可以提供服务的咖啡品牌列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/providers</td>
+<td>{"nonce": "1487743054000", "sign": "32963df5aa08dadad7b4b898c413c44e16d3fbf6", "geo": "31.168226,121.403914", "appid": "e2beb30fe93cd5ca9ed0ba705a4e6096"}</td>
+<td>"正向"</td>
+<td>Pass</td>
+<td>["{"status": 0, "data": [{"support": true, "id": 12, "img": "http://qaimages.lyancafe.com/provider/1459913181578.png", "title": "Coffee Box"}]}"]</td>
+
+</tr>
+<tr><td align="center">'app_wokuaidao'_2</td>
+<td>2.2.2基于提供的经纬度来判断当前可以提供服务的咖啡品牌列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/providers</td>
+<td>{"nonce": "1487743054000", "sign": "e19e186358606e505b98f83e54a5121bdc2d9e83", "geo": "31.168226,121.403914", "appid": "9c838579adda7f729382e226459340e3"}</td>
+<td>"正向"</td>
+<td>Pass</td>
+<td>["{"status": 0, "data": [{"support": true, "id": 12, "img": "http://qaimages.lyancafe.com/provider/1459913181578.png", "title": "Coffee Box"}]}"]</td>
+
+</tr>
+<tr><td align="center">'app_weidian'_2</td>
+<td>2.2.2基于提供的经纬度来判断当前可以提供服务的咖啡品牌列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/providers</td>
+<td>{"nonce": "1487743054000", "sign": "1ebd8a4a934a58e7bf4e4e87636de2a23e6e7454", "geo": "31.168226,121.403914", "appid": "77f18b5fbe3979e9f53ffe09b6004ee5"}</td>
+<td>"正向"</td>
+<td>Pass</td>
+<td>["{"status": 0, "data": [{"support": true, "id": 12, "img": "http://qaimages.lyancafe.com/provider/1459913181578.png", "title": "Coffee Box"}]}"]</td>
+
+</tr>
+<tr><td align="center">'app_sweets'_2</td>
+<td>2.2.2基于提供的经纬度来判断当前可以提供服务的咖啡品牌列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/providers</td>
+<td>{"nonce": "1487743054000", "sign": "61289bd05f9afc16eb40e9c26d8ff952aab98bd1", "geo": "31.168226,121.403914", "appid": "9fde23f821e48ddb20164374957ef772"}</td>
+<td>"正向"</td>
+<td>Pass</td>
+<td>["{"status": 0, "data": [{"support": true, "id": 12, "img": "http://qaimages.lyancafe.com/provider/1459913181578.png", "title": "Coffee Box"}]}"]</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_2</td>
+<td>2.2.2基于提供的经纬度来判断当前可以提供服务的咖啡品牌列表</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/providers</td>
+<td>{"nonce": "1487743054000", "sign": "6982a2fc81d512cccc9b4ab8c816e76ac0767f8c", "geo": "31.168226,121.403914", "appid": "ad5180fff668ac1bc93c368cb6f0a2cb"}</td>
+<td>"正向"</td>
+<td>Pass</td>
+<td>["{"status": 0, "data": [{"support": true, "id": 12, "img": "http://qaimages.lyancafe.com/provider/1459913181578.png", "title": "Coffee Box"}]}"]</td>
+
+</tr>
+<tr><td align="center">'app_qusong'_3</td>
+<td>2.2.3基于品牌商id 得到当前品牌商可以售卖的商品信息</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/provider/goods</td>
+<td>{"nonce": "1487743054000", "providerId": 12.0, "sign": "ebd312351a6410b3f8c08d7081ab1e43573eacea", "appid": "e2beb30fe93cd5ca9ed0ba705a4e6096"}</td>
+<td>"正向"</td>
+<td>Pass</td>
+<td>["{"status": 0, "data": []}"]</td>
+
+</tr>
+<tr><td align="center">'app_wokuaidao'_3</td>
+<td>2.2.3基于品牌商id 得到当前品牌商可以售卖的商品信息</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/provider/goods</td>
+<td>{"nonce": "1487743054000", "providerId": 12.0, "sign": "668ca780d2f16e3435f5188318608ea9b5a2fee2", "appid": "9c838579adda7f729382e226459340e3"}</td>
+<td>"正向"</td>
+<td>Pass</td>
+<td>["{"status": 0, "data": []}"]</td>
+
+</tr>
+<tr><td align="center">'app_weidian'_3</td>
+<td>2.2.3基于品牌商id 得到当前品牌商可以售卖的商品信息</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/provider/goods</td>
+<td>{"nonce": "1487743054000", "providerId": 12.0, "sign": "698942a6e5da6c7e7d87fd5bc7021dd8f5582e00", "appid": "77f18b5fbe3979e9f53ffe09b6004ee5"}</td>
+<td>"正向"</td>
+<td>Pass</td>
+<td>["{"status": 0, "data": []}"]</td>
+
+</tr>
+<tr><td align="center">'app_sweets'_3</td>
+<td>2.2.3基于品牌商id 得到当前品牌商可以售卖的商品信息</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/provider/goods</td>
+<td>{"nonce": "1487743054000", "providerId": 12.0, "sign": "2a6f3089a99a0bbe9be611fa00ebe13be5da1e06", "appid": "9fde23f821e48ddb20164374957ef772"}</td>
+<td>"正向"</td>
+<td>Pass</td>
+<td>["{"status": 0, "data": []}"]</td>
+
+</tr>
+<tr><td align="center">'app_zhuli'_3</td>
+<td>2.2.3基于品牌商id 得到当前品牌商可以售卖的商品信息</td>
+<td>GET</td>
+<td align="center">http://apitest.lyancafe.com/third/v1/provider/goods</td>
+<td>{"nonce": "1487743054000", "providerId": 12.0, "sign": "5cf9d36f968c78e5ed3d8423292d874881c34a90", "appid": "ad5180fff668ac1bc93c368cb6f0a2cb"}</td>
+<td>"正向"</td>
+<td>Pass</td>
+<td>["{"status": 0, "data": []}"]</td>
+
+</tr>
+</table>
+</body>
+</html>
