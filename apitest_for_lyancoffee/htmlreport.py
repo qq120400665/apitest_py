@@ -98,12 +98,16 @@ class HtmlReport:
         return _wrapper
     #统计耗时
 
-
+    #######start test###########
 if __name__ == '__main__':
     start_time = datetime.datetime.now()
     a = HtmlReport()
     #a.generate_html()
-    time.sleep(61)
+    #time.sleep(61)
     end_time = datetime.datetime.now()
     a.set_time_took(str(end_time - start_time))
     a.generate_html()
+
+
+
+
